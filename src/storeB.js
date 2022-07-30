@@ -10,12 +10,15 @@ function createCount() {
         new Promise((resolve) => {
             setTimeout(() => {
                 resolve(Math.floor(Math.random() * 100))
-            }, 2000);
+            }, 5_000);
         });
 
     const fetch = async () => {
+        console.log("fetchB starting...")
         update(({value}) => ({value, isLoading: true}))
         const number = await fetchCount()
+
+        console.log("fetchB done...")
         update(_ => ({value:number, isLoading: false}))
     }
     

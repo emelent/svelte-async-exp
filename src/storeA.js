@@ -5,18 +5,21 @@ function createCount() {
 
     const loadingStore = writable(false)
 
-
     const fetchCount = () =>
         new Promise((resolve, reject) => {
             loadingStore.set(true)
             setTimeout(() => {
                 resolve(Math.floor(Math.random() * 100))
                 loadingStore.set(false)
-            }, 2000);
+            }, 5_000);
         });
 
     const fetch = async () => {
+
+        console.log("fetchA starting...")
         const number = await fetchCount()
+
+        console.log("fetchA done...")
         set(number)
     }
     return {
